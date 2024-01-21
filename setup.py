@@ -97,6 +97,13 @@ def _fetch_archives(src):
             print(f" --- Fetching {os.path.basename(dest)}")
             torch.hub.download_url_to_file(url, dest, progress=False)
 
+from setuptools.command.build_ext import build_ext
+
+class CMakeBuild(setup_helpers.CMakeBuild):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.debug = int(os.environ.get("DEBUG", "0"))
+
 
 def _main():
     sha = _run_cmd(["git", "rev-parse", "HEAD"])
@@ -149,7 +156,7 @@ def _main():
         packages=_get_packages(branch, tag),
         ext_modules=setup_helpers.get_ext_modules(),
         cmdclass={
-            "build_ext": setup_helpers.CMakeBuild,
+            "build_ext": CMakeBuild,
             "clean": clean,
         },
         install_requires=[pytorch_package_dep],
