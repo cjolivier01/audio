@@ -23,9 +23,14 @@ endif()
 
 project(torchaudio)
 
-# set(CMAKE_BUILD_TYPE "Debug")
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
-# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O0")
+set(DEBUG_ENV_VAR $ENV{DEBUG})
+
+if (DEBUG_ENV_VAR STREQUAL "1")
+  message(STATUS " *** BUILDING IN DEBUG MODE ***")
+  set(CMAKE_BUILD_TYPE "Debug")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O0")
+endif()
 
 # check and set CMAKE_CXX_STANDARD
 string(FIND "${CMAKE_CXX_FLAGS}" "-std=c++" env_cxx_standard)
