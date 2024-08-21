@@ -23,6 +23,16 @@ endif()
 
 project(torchaudio)
 
+set(DEBUG_ENV_VAR "$ENV{DEBUG}")
+
+if (DEBUG_ENV_VAR STREQUAL "1" OR DEBUG_ENV_VAR STREQUAL "ON")
+  message(STATUS " *****************************************")
+  message(STATUS " *** BUILDING TORCHAUDIO IN DEBUG MODE ***")
+  message(STATUS " *****************************************")
+  set(CMAKE_BUILD_TYPE "Debug")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O0")
+endif()
 
 # check and set CMAKE_CXX_STANDARD
 string(FIND "${CMAKE_CXX_FLAGS}" "-std=c++" env_cxx_standard)
@@ -58,8 +68,8 @@ option(BUILD_RNNT "Enable RNN transducer" ON)
 option(BUILD_ALIGN "Enable forced alignment" ON)
 option(BUILD_CUDA_CTC_DECODER "Build CUCTC decoder" OFF)
 option(BUILD_TORCHAUDIO_PYTHON_EXTENSION "Build Python extension" OFF)
-option(USE_FFMPEG "Enable ffmpeg-based features" OFF)
-option(USE_CUDA "Enable CUDA support" OFF)
+option(USE_FFMPEG "Enable ffmpeg-based features" ON)
+option(USE_CUDA "Enable CUDA support" ON)
 option(USE_ROCM "Enable ROCM support" OFF)
 option(USE_OPENMP "Enable OpenMP support" OFF)
 
