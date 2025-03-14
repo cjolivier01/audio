@@ -32,6 +32,8 @@
 
 #include "bitonic_topk/warpsort_topk.cuh"
 
+#include <float.h>
+
 namespace cu_ctc {
 __inline__ __device__ float _lauguage() {
   return 1.0f;
