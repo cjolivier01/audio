@@ -24,6 +24,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <algorithm>
+#include <cfloat>
 #include "ctc_fast_divmod.cuh"
 #include "cub/cub.cuh"
 #include "device_data_wrap.h"
@@ -32,7 +33,6 @@
 
 #include "bitonic_topk/warpsort_topk.cuh"
 
-#include <float.h>
 
 namespace cu_ctc {
 __inline__ __device__ float _lauguage() {
