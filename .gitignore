@@ -127,3 +127,4 @@ examples/interactive_asr/data/*.txt
 examples/interactive_asr/data/*.model
 examples/interactive_asr/data/*.pt
 examples/tutorials/_assets
+cmake-build
